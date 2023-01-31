@@ -15,11 +15,11 @@ export default function Button({
 }: ButtonProps) {
     return (
         <button
-            className={clsx('font-medium transition', {
+            className={clsx('font-semibold transition', {
                 'rounded-md py-2 px-3': size === 'medium',
-                'bg-purple-500 text-slate-200 transition hover:bg-purple-600 hover:text-slate-300':
+                'bg-purple-600 text-slate-100 hover:text-slate-200 dark:bg-purple-500 dark:text-slate-200 dark:hover:text-slate-300':
                     variant === 'primary',
-                'border border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800':
+                'border border-slate-300 bg-slate-200 dark:border-slate-600 dark:bg-slate-700':
                     variant === 'secondary',
             })}
             {...restProps}

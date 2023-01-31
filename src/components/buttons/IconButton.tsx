@@ -22,7 +22,8 @@ export default function IconButton({
                 'rounded-md  p-2': size === 'medium',
                 'rounded p-1.5': size === 'small',
                 'rounded-lg p-3': size === 'large',
-                'border border-slate-700 bg-slate-800': appearance === 'solid',
+                'border border-slate-200 bg-slate-100 dark:border-slate-700 dark:bg-slate-800':
+                    appearance === 'solid',
             })}
             {...restProps}
         >

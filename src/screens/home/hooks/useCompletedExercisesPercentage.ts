@@ -1,6 +1,6 @@
 import { calculatePercentage } from '@/utils';
 import { useMemo } from 'react';
-import type { Exercise } from '../dailyRoutine';
+import type { Exercise } from '../atom';
 
 const TOTAL_EXERCISES_COUNT = 8;
 

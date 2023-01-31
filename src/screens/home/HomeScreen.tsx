@@ -1,39 +1,13 @@
-import { CalendarDaysIcon } from '@heroicons/react/24/outline';
-import { useLocalStorage } from '@/hooks';
+import { IconButton } from '@/components/buttons';
 import BaseLayout from '@/layouts/BaseLayout';
-import { DateTime } from 'luxon';
+import { CalendarDaysIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import CalendarSidebar from './components/CalendarSidebar';
-import DailyRoutineContent from './components/DailyRoutineContent';
-import type { DailyRoutine } from './dailyRoutine';
-import { IconButton } from '@/components/buttons';
+import DailyRoutineContent from './components/DailyRoutineContent/DailyRoutineContent';
 
 export default function HomeScreen() {
-    const [selectedDate, setSelectedDate] = useState(DateTime.now());
-    const [dailyRoutines, setDailyRoutines] = useLocalStorage<DailyRoutine[]>(
-        'dailyRoutines',
-        [],
-    );
-
     const [isMobileCalendarSidebarOpen, setIsMobileCalendarSidebarOpen] =
         useState(false);
-
-    function handleAddDailyRoutine(dailyRoutine: DailyRoutine) {
-        setDailyRoutines([...dailyRoutines, dailyRoutine]);
-    }
-
-    function handleUpdateDailyRoutine(
-        dailyRoutineId: string,
-        fieldsToUpdate: Pick<Partial<DailyRoutine>, 'exercises'>,
-    ) {
-        const updatedDailyRoutines = dailyRoutines.map((dailyRoutine) =>
-            dailyRoutine.id === dailyRoutineId
-                ? { ...dailyRoutine, ...fieldsToUpdate }
-                : dailyRoutine,
-        );
-
-        setDailyRoutines(updatedDailyRoutines);
-    }
 
     return (
         <BaseLayout
@@ -55,17 +29,9 @@ export default function HomeScreen() {
                     onMobileSidebarClose={() =>
                         setIsMobileCalendarSidebarOpen(false)
                     }
-                    selectedDate={selectedDate}
-                    onDailyRoutineCreate={handleAddDailyRoutine}
-                    dailyRoutines={dailyRoutines}
-                    onSelectedDateChange={setSelectedDate}
                 />
 
-                <DailyRoutineContent
-                    selectedDate={selectedDate}
-                    dailyRoutines={dailyRoutines}
-                    onDailyRoutineUpdate={handleUpdateDailyRoutine}
-                />
+                <DailyRoutineContent />
             </div>
         </BaseLayout>
     );

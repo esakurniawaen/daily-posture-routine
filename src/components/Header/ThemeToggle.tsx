@@ -1,18 +1,18 @@
 import { useTheme } from '@/hooks';
-import { IconButton } from '../buttons';
 import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import AutoAnimate from '../AutoAnimate';
+import { IconButton } from '../buttons';
+import ClientOnly from '../ClientOnly';
 
 export default function ThemeToggle() {
-    const { theme, toggleTheme, isMounted } = useTheme();
+    const { theme, toggleTheme } = useTheme();
 
     const buttonLabel =
         theme === 'light' ? 'Enable dark mode' : 'Enable light mode';
 
-    if (!isMounted) return null;
-
     return (
-        <IconButton
+        <ClientOnly
+            as={IconButton}
             onClick={() => toggleTheme()}
             title={buttonLabel}
             aria-label={buttonLabel}
@@ -24,6 +24,6 @@ export default function ThemeToggle() {
                     <SunIcon className="h-6 w-6" />
                 )}
             </AutoAnimate>
-        </IconButton>
+        </ClientOnly>
     );
 }

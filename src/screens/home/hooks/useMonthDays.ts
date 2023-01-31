@@ -1,9 +1,13 @@
-import type { DateTime } from 'luxon';
+import type { PossibleDaysInMonth } from 'luxon';
+import { useEffect } from 'react';
 import { useState } from 'react';
 
-export function useMonthDays(date: DateTime): number[] {
-    const [days] = useState(
-        Array.from({ length: date.daysInMonth }, (_, i) => i + 1),
-    );
-    return days;
+export function useMonthDays(daysInMonth: PossibleDaysInMonth) {
+    const [monthDays, setMonthDays] = useState<number[]>([]);
+
+    useEffect(() => {
+        setMonthDays(Array.from({ length: daysInMonth }, (_, i) => i + 1));
+    }, [daysInMonth]);
+
+    return monthDays;
 }

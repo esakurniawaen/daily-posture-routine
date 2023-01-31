@@ -1,7 +1,7 @@
 import { Dialog } from '@headlessui/react';
-import Calendar, { type CalendarProps } from './Calendar';
+import Calendar from './Calendar';
 
-type CalendarSidebarProps = CalendarProps & {
+type CalendarSidebarProps = {
     onMobileSidebarClose: () => void;
     mobileSidebarOpen: boolean;
 };
@@ -9,12 +9,12 @@ type CalendarSidebarProps = CalendarProps & {
 export default function CalendarSidebar({
     onMobileSidebarClose,
     mobileSidebarOpen,
-    ...calendarProps
 }: CalendarSidebarProps) {
     return (
         <>
-            <aside className="sticky top-16 hidden w-1/3 max-w-xl self-start desktop:block">
-                <Calendar {...calendarProps} />
+            <aside className="sticky top-[4.688rem] hidden w-1/3 max-w-xl self-start rounded-lg shadow dark:shadow-lg desktop:block">
+                <h2 className="sr-only">Calendar tracker</h2>
+                <Calendar />
             </aside>
 
             <Dialog
@@ -22,14 +22,15 @@ export default function CalendarSidebar({
                 open={mobileSidebarOpen}
                 onClose={onMobileSidebarClose}
             >
+                <h2 className="sr-only">Calendar tracker</h2>
                 <div
                     className="fixed inset-0 z-40 backdrop-blur dark:bg-slate-900/30"
                     aria-hidden="true"
                 />
 
                 <div className="fixed inset-0 z-50 flex items-end tablet:items-start tablet:justify-end">
-                    <Dialog.Panel className="flex justify-end rounded-lg tablet:w-1/3">
-                        <Calendar {...calendarProps} />
+                    <Dialog.Panel className="bg-slate-50 shadow dark:bg-slate-900 dark:shadow-lg tablet:w-1/3 tablet:rounded-md">
+                        <Calendar />
                     </Dialog.Panel>
                 </div>
             </Dialog>
