@@ -7,7 +7,7 @@ import { type AppType } from 'next/dist/shared/lib/utils';
 // use PascalCase name for React Component file or folder containing only one React component (e.g Header folder only exported Header, if for example you have a buttons folder that exported multiple buttons use camelCase instead for the buttons folder), otherwise use camelCase instead
 const MyApp: AppType = ({ Component, pageProps }) => {
     return (
-        <ThemeProvider themes={['blue', 'red']} attribute="class">
+        <ThemeProvider attribute="class">
             <Provider>
                 <Component {...pageProps} />
             </Provider>
