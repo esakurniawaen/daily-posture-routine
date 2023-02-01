@@ -1,4 +1,4 @@
-import { Atom, atom } from 'jotai';
+import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 import { DateTime } from 'luxon';
 
